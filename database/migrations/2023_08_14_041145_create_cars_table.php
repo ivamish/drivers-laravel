@@ -19,8 +19,8 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('condition_cars_id');
-            $table->integer('status_cars_id');
+            $table->integer('cars_status_id');
+            $table->integer('cars_state_id');
             $table->timestamps();
         });
     }

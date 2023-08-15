@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Таблица заказов:
      * Status - статус заказа (в работе, ожидает, завершён)
-     * user_id - водитель, который выполняет или выполнил заказ (null, если водитель ещё не назначен)
+     * driver_id - водитель, который выполняет или выполнил заказ (null, если водитель ещё не назначен)
      * address - адресс доставки (Yandex Maps API предоставляет возможность задать маршрут по адресу, а не по координатам)
      * start - Время начала заказа  }
      *                              } => промежуток, в течении которого необходимо выполнить заказ
@@ -20,10 +20,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
-            $table->integer('user_id')->nullable();
-            $table->string('address');
+            $table->integer('driver_id')->nullable();
+            $table->string('location');
             $table->timestamp('start');
             $table->timestamp('end');
+            $table->timestamps();
         });
     }
 

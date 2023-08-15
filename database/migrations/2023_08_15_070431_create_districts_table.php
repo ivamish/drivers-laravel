@@ -7,15 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Миграция, которая создаёт таблицу состояний транспортных средств (готов, в ремонте, на ТО)
+     * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('cars_condition', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
+            $table->string('address');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars_condition');
+        Schema::dropIfExists('districts');
     }
 };

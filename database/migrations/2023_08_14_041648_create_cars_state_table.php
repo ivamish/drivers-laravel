@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Миграция, которая создаёт таблицу статусов транспортных средств (в рейсе, на стоянке)
+     * Миграция, которая создаёт таблицу состояний транспортных средств (готов, в ремонте, на ТО)
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('cars_status', function (Blueprint $table) {
+        Schema::create('cars_state', function (Blueprint $table) {
             $table->id();
             $table->string('description');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars_status');
+        Schema::dropIfExists('cars_condition');
     }
 };

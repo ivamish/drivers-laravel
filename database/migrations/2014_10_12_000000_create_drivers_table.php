@@ -22,16 +22,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->integer('driver_type_id');
-            $table->string('district_id');
-            $table->integer('status_id');
+            $table->integer('age');
+            $table->integer('cars_id');
+            $table->string('districts_id');
+            $table->integer('drivers_type_id');
+            $table->integer('drivers_status_id');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

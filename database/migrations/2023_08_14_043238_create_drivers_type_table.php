@@ -7,15 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Миграция, которая создаёт таблицу статусов водителей (отдыхает, работает, на заказе)
+     * Миграция, которая создаёт таблицу с перечеслением типов водителей (ИМ или ЭТ)
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users_status', function (Blueprint $table) {
+        Schema::create('drivers_type', function (Blueprint $table) {
             $table->id();
             $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_status');
+        Schema::dropIfExists('driver_type');
     }
 };
