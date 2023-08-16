@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CarController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,5 @@ use App\Http\Controllers\Api\CarController;
 */
 
 Route::apiResource('/cars', CarController::class);
+Route::apiResource('/drivers', OrderController::class);
+Route::apiResource('/orders', DriverController::class);
