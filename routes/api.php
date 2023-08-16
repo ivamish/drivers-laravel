@@ -18,5 +18,5 @@ use App\Http\Controllers\Api\DriverController;
 */
 
 Route::apiResource('/cars', CarController::class);
-Route::apiResource('/drivers', OrderController::class);
-Route::apiResource('/orders', DriverController::class);
+Route::apiResource('/drivers', DriverController::class);
+Route::apiResource('/orders', OrderController::class);

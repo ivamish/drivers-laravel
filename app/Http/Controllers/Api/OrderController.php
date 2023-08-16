@@ -5,61 +5,49 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return Order::all();
+        // todo Здесь будет подключение к базе 1С:ТМС для получения списка всех невыполненных заказов
+
+        $client = Http::get('https://jsonplaceholder.typicode.com/todos/');
+        return $client->body();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        return "store order";
+        //Данный метод скорее не будет использоваться в приложении
+
+        return false;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        return Order::findAndFail($id);
+        // todo Здесь будет подключение к базе 1С:ТМС для получения информации об одном заказе
+
+        $client = Http::get("https://jsonplaceholder.typicode.com/todos/{$id}");
+        return $client->body();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        return "update order";
+        /*
+         | todo : Здесь будет подключение к базе 1С:ТМС для изменения информации о заказе
+         | todo : В частности, когда водитель берет или доставляет заказ, его статус меняется
+         */
+
+        $client = Http::put("https://jsonplaceholder.typicode.com/todos/{$id}", $request->all());
+        return $client->body();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        //Данный метод скорее не будет использоваться в приложении
+
+        return false;
     }
 }
