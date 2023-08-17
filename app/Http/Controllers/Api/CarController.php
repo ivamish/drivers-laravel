@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\ConvertXmlToJsonAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CarResource;
 use App\Models\CarState;
@@ -17,12 +18,39 @@ class CarController extends Controller
      |
      | todo Необходимо реализовать получение данных из 1С
      */
-    public function index()
+    public function index(ConvertXmlToJsonAction $converter)
     {
         // todo Здесь будет подключение к базе 1С:ТМС для получения списка всех машин
+        // todo В качестве заглушки используется XML-файл с примерными параметрами
 
-        $client = Http::get('https://jsonplaceholder.typicode.com/todos/');
-        return $client->body();
+        /*
+         * Получение строки XML с файла
+         */
+        $xml = file_get_contents(storage_path('app\files\XmlExamples') . "\cars.xml");
+
+        /*
+         * Передача готовой XML-строки в объект
+         */
+        $converter->setSimpleXML($xml);
+
+        /*
+         * Установка родительского и дочернего тега, с которыми мы будем работать
+         */
+        $converter->root = 'машины';
+        $converter->child = 'машина';
+
+        /*
+         * Переводим теги, которые нам придут с 1с
+         */
+        $params = [
+            'id' => 'идентификатор',
+            'name' => 'название',
+            'status' => 'статус',
+            'state' => 'состояние',
+        ];
+
+        return $converter->getAllChildren($params);
+
     }
 
 
@@ -34,12 +62,22 @@ class CarController extends Controller
         return false;
     }
 
-    public function show($id)
+    public function show($id, ConvertXmlToJsonAction $converter)
     {
         //todo Здесь будет подключение к базе 1С:ТМС для получения определенной машины
 
-        $client = Http::get("https://jsonplaceholder.typicode.com/todos/$id");
-        return $client->body();
+        $xml = file_get_contents(storage_path('app\files\XmlExamples') . "\car.xml");
+        $converter->setSimpleXML($xml);
+        $converter->root = 'машины';
+        $converter->child = 'машина';
+        $params = [
+            'id' => 'идентификатор',
+            'name' => 'название',
+            'status' => 'статус',
+            'state' => 'состояние',
+        ];
+
+        return $converter->getAllChildren($params);
     }
 
 
