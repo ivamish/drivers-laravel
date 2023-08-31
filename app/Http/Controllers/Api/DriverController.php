@@ -52,6 +52,11 @@ class DriverController extends Controller
         return $converter->getAllChildren($params);
     }
 
+    public function importFrom1C(Request $request)
+    {
+        //todo импорт водителей в приложение;
+    }
+
 
     public function store(Request $request)
     {

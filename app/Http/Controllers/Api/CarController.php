@@ -20,39 +20,17 @@ class CarController extends Controller
      */
     public function index(ConvertXmlToJsonAction $converter)
     {
-        // todo Здесь будет подключение к базе 1С:ТМС для получения списка всех машин
-        // todo В качестве заглушки используется XML-файл с примерными параметрами
 
-        /*
-         * Получение строки XML с файла
-         */
-        $xml = file_get_contents(storage_path('app\files\XmlExamples') . "\cars.xml");
 
-        /*
-         * Передача готовой XML-строки в объект
-         */
-        $converter->setSimpleXML($xml);
-
-        /*
-         * Установка родительского и дочернего тега, с которыми мы будем работать
-         */
-        $converter->root = 'машины';
-        $converter->child = 'машина';
-
-        /*
-         * Переводим теги, которые нам придут с 1с
-         */
-        $params = [
-            'id' => 'идентификатор',
-            'name' => 'название',
-            'status' => 'статус',
-            'state' => 'состояние',
-        ];
-
-        return $converter->getAllChildren($params);
+        return 111;
 
     }
 
+
+    public function importFromOneC(Request $request)
+    {
+        //todo импорт автомобилей с 1С
+    }
 
     public function store(Request $request)
     {

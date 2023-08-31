@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Users\RegisterController;
+use App\Http\Controllers\Orders\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,10 @@ use App\Http\Controllers\Users\RegisterController;
 */
 
 Route::get('/', [MainController::class, 'index']);
+Route::get('orders', [OrderController::class, 'index']);
+Route::get('orders/add', [OrderController::class, 'add']);
+Route::post('orders/store', [OrderController::class, 'store'])->name('order.store');
+Route::get('orders/show/{id}', [OrderController::class, 'show']);
 
 Route::prefix('admin')->group(function () {
     Route::get('users', function (){
